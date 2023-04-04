@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "144651699552",
+    "project_id": "orderinsta-87ddb",
+    "storage_bucket": "orderinsta-87ddb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144651699552:android:506b2c5f2684b7160cca05",
+        "android_client_info": {
+          "package_name": "com.example.food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144651699552-8ndp984qhmqotniaaj2r002vhivr9jd4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh9ZOEPh19TTR5v0NHIa0Bq2Bo5dQn9ds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144651699552-8ndp984qhmqotniaaj2r002vhivr9jd4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

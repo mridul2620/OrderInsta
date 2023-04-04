@@ -1,0 +1,170 @@
+import "package:flutter/material.dart";
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food/flobal_variables.dart';
+import 'package:food/food/menu.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../fonts/fonts.dart';
+
+class Res_list extends StatefulWidget {
+  const Res_list({super.key});
+
+  @override
+  State<Res_list> createState() => _Res_listState();
+}
+
+class _Res_listState extends State<Res_list> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: themecolor,
+      appBar: AppBar(
+        backgroundColor: kmaincolor,
+        title: Text("OrderInsta",
+            style: GoogleFonts.josefinSans(textStyle: boldstyle)),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('list').snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 248.0),
+                    child: SpinKitFadingCircle(
+                      color: kmaincolor,
+                      size: 50.0,
+                    ),
+                  ),
+                );
+              }
+              return ListView.builder(
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    DocumentSnapshot product = snapshot.data!.docs[index];
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenuPage()));
+                      }, //navigateToDetail(doc[index]),
+                      child: Container(
+                        height: 175,
+                        child: Container(
+                            height: 175,
+                            //padding: const EdgeInsets.only(left: 5, right: 5),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(237, 35, 18, 6),
+                              // Color.fromARGB(255, 196, 192, 211),
+                              borderRadius: BorderRadius.circular(20),
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //       blurRadius: 2,
+                              //       offset: Offset(0, 0),
+                              //       color: Colors.grey.withOpacity(0.2))
+                              // ]
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              child: Row(children: [
+                                Container(
+                                  width: 127,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                          image: NetworkImage(product['image']),
+                                          fit: BoxFit.fill)),
+                                ),
+                                SizedBox(
+                                  width: 13,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(top: 15),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                      child: Text(
+                                        product['name'],
+                                        style: GoogleFonts.secularOne(
+                                            textStyle: softbold,
+                                            color: maincolor),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.stars_rounded,
+                                          size: 24,
+                                          color: maincolor,
+                                        ),
+                                        SizedBox(
+                                          width: 2,
+                                        ),
+                                        Text(product['rating'],
+                                            style: GoogleFonts.secularOne(
+                                                textStyle: softnormal,
+                                                color: maincolor)),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        CircleAvatar(
+                                          radius: 4,
+                                          backgroundColor: maincolor,
+                                        ),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
+                                        Text(
+                                          product['time'],
+                                          style: GoogleFonts.secularOne(
+                                              textStyle: softnormal,
+                                              color: maincolor),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                      child: Text(
+                                        product['cat'],
+                                        style: GoogleFonts.secularOne(
+                                            textStyle: softnormal,
+                                            color: maincolor),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                      child: Text(product['area'],
+                                          style: GoogleFonts.secularOne(
+                                              textStyle: softnormal,
+                                              color: maincolor)),
+                                    ),
+                                  ],
+                                )
+                              ]),
+                            )),
+                      ),
+                    );
+                  });
+            }),
+      ),
+    );
+  }
+}
