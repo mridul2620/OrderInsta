@@ -1,6 +1,6 @@
 # OrderInsta - Your Comprehensive Food Solution
 
-OrderInsta is a versatile food ordering app that goes beyond traditional boundaries, offering users a seamless experience in ordering both food and groceries online. Explore a myriad of features, from restaurant browsing to connecting with local chefs and caterers, all within the convenience of your mobile device.
+OrderInsta is a comprehensive food ordering app that revolutionizes how users discover and interact with local restaurants, grocery stores, chefs, caterers, and event venues. With a user-friendly interface, seamless navigation, and innovative features, OrderInsta aims to provide a one-stop solution for all your food-related needs.
 
 ## Key Features
 
